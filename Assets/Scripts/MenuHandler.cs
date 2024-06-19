@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,12 +11,12 @@ using UnityEditor;
 
 public class MenuHandler : MonoBehaviour
 {
-    public TextMeshProUGUI highScore;
+    public GameObject playerInput;
+    private string playerName;
 
     void Start()
     {
-        //Initialize the High Score text field
-        highScore.text = "---";
+
     }
 
     void Update()
@@ -25,6 +26,11 @@ public class MenuHandler : MonoBehaviour
 
     public void StartNew()
     {
+        playerName = playerInput.GetComponent<TMP_InputField>().text;
+        if (ScoreController.Instance != null)
+        {
+            ScoreController.Instance.PlayerName = playerName;
+        }
         SceneManager.LoadScene(1);
     }
 
