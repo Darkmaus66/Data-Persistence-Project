@@ -14,16 +14,6 @@ public class MenuHandler : MonoBehaviour
     public GameObject playerInput;
     private string playerName;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
-
     public void StartNew()
     {
         playerName = playerInput.GetComponent<TMP_InputField>().text;

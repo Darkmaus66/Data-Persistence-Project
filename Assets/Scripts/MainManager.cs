@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -86,6 +85,20 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+        if (m_Points > highScore)
+        {
+            NewHighScore();
+        }
         GameOverText.SetActive(true);
+    }
+
+    void NewHighScore()
+    {
+        highScorePlayer = playerName;
+        highScore = m_Points;
+        HighScoreText.text = $"High Score : {highScorePlayer} : {highScore}";
+        ScoreController.Instance.HighScorePlayer = highScorePlayer;
+        ScoreController.Instance.HighScore = highScore;
+        ScoreController.Instance.SaveHighScore();
     }
 }
